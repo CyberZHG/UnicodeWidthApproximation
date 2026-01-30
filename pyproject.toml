@@ -1,0 +1,54 @@
+[build-system]
+requires = ["scikit-build-core", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "unicode-width-approximation"
+version = "1.0.0"
+description = "A library for calculating the display width of Unicode strings."
+requires-python = ">=3.8"
+readme = "python/README.md"
+license = { text = "MIT" }
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C++",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/CyberZHG/UnicodeWidthApproximation"
+Repository = "https://github.com/CyberZHG/UnicodeWidthApproximation"
+Issues = "https://github.com/CyberZHG/UnicodeWidthApproximation/issues"
+
+[tool.scikit-build]
+build-dir = "../cmake-build-python/{wheel_tag}"
+build.verbose = true
+
+[tool.scikit-build.cmake.define]
+UNICODE_WIDTH_APPROXIMATION_BIND_PYTHON = "ON"
+
+[tool.scikit-build.sdist]
+exclude = [
+    ".*",
+    "build*",
+    "cmake-build*",
+    "dist",
+    "scripts",
+    "tests",
+    "wasm",
+    "*.md",
+    "python/tests",
+]
+include = [
+    "python/README.md",
+]
+
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "black",
+    "isort",
+    "flake8",
+]
